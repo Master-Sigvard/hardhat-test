@@ -14,6 +14,7 @@ contract Lottery {
         owner = msg.sender;
     }
 
+
     function getBalance() public view returns (uint) {
         return address(this).balance;
     }
@@ -50,6 +51,8 @@ contract Lottery {
         for (i = 0; index > values[i];) {
             i++;
         }
+        address payable ownerWallet = payable(owner);
+        ownerWallet.transfer(address(this).balance / 10);
         players[i].transfer(address(this).balance);
         
         sum = 0;
